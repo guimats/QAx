@@ -1,8 +1,12 @@
 from robot.api.deco import keyword
 from pymongo import MongoClient
 import bcrypt
+import os
+from dotenv import load_dotenv
 
-cliente = MongoClient('mongodb+srv://qa:xperience@cluster0.7t92z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+load_dotenv()
+
+cliente = MongoClient(os.getenv("DATABASE_URL"))
 
 db = cliente['markdb']
 
