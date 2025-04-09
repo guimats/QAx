@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation        Cenários de testes de atualização de tarefas
+Documentation        Cenários de testes de remoção de tarefas
 
 Resource         ../../resources/base.resource
 
@@ -7,9 +7,9 @@ Test Setup        Start Session
 Test Teardown     Take Screenshot
 
 *** Test Cases ***
-Deve poder marcar uma tarefa como concluída
+Deve poder apagar uma tarefa indesejada
     
-    ${data}        Get fixtures    tasks    done
+    ${data}        Get fixtures    tasks    delete
 
     Reset user from database       ${data}[user]
 
@@ -17,5 +17,5 @@ Deve poder marcar uma tarefa como concluída
 
     Do login                       ${data}[user]
     
-    Mark task as completed         ${data}[task][name]
-    Task should be complete        ${data}[task][name]
+    Request removal                ${data}[task][name]
+    Task should not exist          ${data}[task][name]

@@ -8,16 +8,17 @@ Test Teardown     Take Screenshot
 
 *** Test Cases ***
 Deve poder cadastrar uma nova tarefa
+    [Tags]    critical
+
     ${data}    Get fixtures    tasks    create
 
-    Clean user from database     ${data}[user][email]
-    Insert user from database    ${data}[user]
+    Reset user from database     ${data}[user]
 
-    Submit login form            ${data}[user]
-    User should be loged in      ${data}[user][name]
+    Do login                     ${data}[user]
 
     Go to task form
     Submit task form             ${data}[task]
+
     Task should be registered    ${data}[task][name]
 
 Não deve cadastrar tarefa duplicada
@@ -25,14 +26,11 @@ Não deve cadastrar tarefa duplicada
 
     ${data}        Get fixtures    tasks    duplicate
     
-    Clean user from database   ${data}[user][email]
-    Insert user from database  ${data}[user]
+    Reset user from database     ${data}[user]
     
-    POST user session    ${data}[user]
-    POST a new task      ${data}[task]
+    Create a new task from API   ${data}
     
-    Submit login form            ${data}[user]
-    User should be loged in      ${data}[user][name]
+    Do login                     ${data}[user]
 
     Go to task form
     Submit task form             ${data}[task]
@@ -44,11 +42,9 @@ Não deve cadastrar nova tarefa quando atinge o limite de tags
 
     ${data}        Get fixtures    tasks    tags_limit
     
-    Clean user from database   ${data}[user][email]
-    Insert user from database  ${data}[user]
+    Reset user from database     ${data}[user]
     
-    Submit login form            ${data}[user]
-    User should be loged in      ${data}[user][name]
+    Do login                     ${data}[user]
 
     Go to task form
     Submit task form             ${data}[task]

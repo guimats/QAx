@@ -41,7 +41,18 @@
         },
         "task": {
             "name": "Criar uma nova IA",
-            "tags": ["jarvis", "ultron", "ark"]
+            "tags": ["jarvis", "friday", "ark"]
+        }
+    },
+    "delete": {
+        "user": {
+            "name": "Hank Pym",
+            "email": "hank@pymtech.com",
+            "password": "pwd123"
+        },
+        "task": {
+            "name": "Criar a IA do Ultron",
+            "tags": ["ultron", "ia"]
         }
     }
 }
